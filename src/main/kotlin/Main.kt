@@ -1,5 +1,6 @@
 fun main() {
 
+    month.set(1,500)
     discount(1,"Mastercard", 40)
     discount(1,"Maestro", 23333)
     discount(1,"Visa", 414)
@@ -15,17 +16,15 @@ const val MAX_MONTH_LIMIT = 600_000
 // массив из 30 дней, куда вносится сумма перевода за определенные дни
 var month = Array(30) { 0 }
 
+
 fun discount(day: Int, cardType: String, currentSum: Int) {
 
     //проверим, не превышен ли лимит за месяц
     if ((currentSum + checkMonthSum()) <= MAX_MONTH_LIMIT) {
         //если не превышен, то проверим, не превышен ли лимит за указанный день
-        val sumForDay = 0
-        month[day] = sumForDay
-
-        if ((currentSum + sumForDay) <= MAX_DAY_LIMIT) {
+        if ((currentSum + month[day]) <= MAX_DAY_LIMIT) {
             //вложим сумму перевода в ячейку массива, отвечающую за сумму всех транзакций в течение указанного дня
-            month[day] = day + currentSum
+            month[day] = month[day] + currentSum
             //рассчитаем скидку
             when (cardType) {
                 "Mastercard" -> if (currentSum in 300..75000) "$currentSum" else "Сумма со скидкой" +
@@ -59,3 +58,4 @@ fun discount(day: Int, cardType: String, currentSum: Int) {
 fun checkMonthSum(): Int {
     return month.sum()
 }
+
