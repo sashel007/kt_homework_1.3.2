@@ -14,7 +14,7 @@ const val MAX_DAY_LIMIT = 150_000
 const val MAX_MONTH_LIMIT = 600_000
 
 // массив из 30 дней, куда вносится сумма перевода за определенные дни
-var month = Array(30) { 0 }
+var month = Array(30,) { 0 }
 
 
 fun discount(day: Int, cardType: String, currentSum: Int) {
